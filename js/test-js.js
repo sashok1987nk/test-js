@@ -1,5 +1,19 @@
-function greet(name) {
-    console.log(`Welcome ${name}!`);
+class Car {
+  static #maxPrice = 50000;
+  static checkPrice(price) {
+    if (price > Car.#maxPrice) {
+      return `Error! Price exceeds the maximum`;
+    } else {
+      return `Success! Price is within acceptable limits`;
+    }
   }
-  
- 
+
+  constructor({ price }) {
+    this.price = price;
+  }
+}
+
+const audi = new Car({ price: 36000 });
+const bmw = new Car({ price: 64000 });
+
+console.log(Car.checkPrice(audi.price));
