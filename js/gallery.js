@@ -80,23 +80,15 @@ const images = [
     </li>
   `).join('');
   
-  galleryContainer.innerHTML = galleryMarkup;
+  const form = document.querySelector(".feedback-form");
+const localStorageKey = "goit-example-message";
 
-  function onGalleryItemClick(event) {
-    event.preventDefault();
-  
-    const target = event.target;
-  
-    if (target.classList.contains('gallery-image')) {
-      const largeImageUrl = target.dataset.source;
-  
-      // Відкриття модального вікна
-      const instance = basicLightbox.create(`
-        <img src="${largeImageUrl}" alt="">
-      `);
-  
-      instance.show();
-    }
-  }
+form.addEventListener("input", (evt) => {
+  localStorage.setItem(localStorageKey, evt.target.value);
+});
 
-  galleryContainer.addEventListener('click', onGalleryItemClick);
+form.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+	console.log(evt.target.elements.message.value);
+  form.reset();
+});
